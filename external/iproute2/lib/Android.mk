@@ -1,7 +1,9 @@
 LOCAL_PATH := external/iproute2/lib
 
 include $(CLEAR_VARS)
-LOCAL_SRC_FILES := utils.c rt_names.c ll_types.c ll_proto.c ll_addr.c inet_proto.c
+LOCAL_SRC_FILES := \
+    color.c utils.c rt_names.c ll_types.c ll_proto.c ll_addr.c inet_proto.c \
+    mpls_pton.c namespace.c names.c libgenl.c libnetlink.c
 LOCAL_MODULE := libiprouteutil_static
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../include
 LOCAL_CFLAGS := -O2 -g -W -Wall \
@@ -27,8 +29,11 @@ LOCAL_CFLAGS := -O2 -g -W -Wall \
 	-DHAVE_EXT2_IOCTLS \
 	-DHAVE_LINUX_FD_H \
 	-DHAVE_TYPE_SSIZE_T \
+	-DHAVE_SETNS \
+	-D_GNU_SOURCE \
 	-Wno-pointer-arith \
 	-Wno-sign-compare \
+	-Wno-unused-parameter \
 	-Werror
 
 LOCAL_MODULE_TAGS := optional
@@ -63,6 +68,7 @@ LOCAL_CFLAGS := -O2 -g -W -Wall \
 	-DHAVE_TYPE_SSIZE_T \
 	-Wno-pointer-arith \
 	-Wno-sign-compare \
+	-Wno-unused-parameter \
 	-Werror
 
 LOCAL_MODULE_TAGS := optional
